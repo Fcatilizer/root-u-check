@@ -6,7 +6,7 @@ A material you themed root checker app, made with flutter.
 
 ## Contains
 
-<img src="screenshot/1.png alt="drawing" width="200"/> <img src="screenshot/2.png alt="drawing" width="200"/> <img src="screenshot/3.png alt="drawing" width="200"/> <img src="screenshot/4.png alt="drawing" width="200"/>
+![alt text](/screenshots/1.png) ![alt text](/screenshots/2.png)
 
 Root Checker
 Device Information
