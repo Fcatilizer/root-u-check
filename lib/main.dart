@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rootucheck/pages/home.dart';
 import 'package:rootucheck/pages/info.dart';
+import 'package:rootucheck/pages/log.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
             routes: {
               '/': (context) => const Home(),
               '/info': (context) => const Info(),
+              '/log': (context) => const Log(),
             },
           );
         });
