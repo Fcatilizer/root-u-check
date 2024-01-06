@@ -108,6 +108,13 @@ class _Home extends State<Home> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, '/log');
+        },
+        child: const Icon(Icons.pest_control),
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      )
     );
   }
 }
