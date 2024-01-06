@@ -99,12 +99,12 @@ class _Home extends State<Home> {
                 ),
               ),
             ),
-            // OutlinedButton(
-            //   onPressed: () {
-            //     Navigator.pushNamed(context, '/info');
-            //   },
-            //   child: const Text('Device Info'),
-            // ),
+            OutlinedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/info');
+              },
+              child: const Text('Device Info'),
+            ),
           ],
         ),
       ),
