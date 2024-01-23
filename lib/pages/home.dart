@@ -1,6 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:root/root.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -25,6 +27,103 @@ class _Home extends State<Home> {
     _checkRoot();
   }
 
+  Future<void> _launchInBrowser(Uri url) async {
+    if (!await launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
+  final Uri tosURL = Uri.parse("Urls.TOS");
+  final Uri privacyPolicyURL = Uri.parse("Urls.PRIVACY_POLICY");
+
+  void showCustomDialogBox() async {
+    final ThemeData themeData = Theme.of(context);
+    final MaterialLocalizations localizations =
+    MaterialLocalizations.of(context);
+    const double _textVerticalSeparation = 18.0;
+
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: ListBody(
+              children: <Widget>[
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Icon(Icons.visibility,
+                        size: 50, color: themeData.colorScheme.primary),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 24.0),
+                        child: ListBody(
+                          children: <Widget>[
+                            Text("Eye Care",
+                                style: themeData.textTheme.headlineSmall),
+                            Text("1.0.0",
+                                style: themeData.textTheme.bodyMedium),
+                            const SizedBox(height: _textVerticalSeparation),
+                            Text('Developed by A3 Group\n\n',
+                                style: themeData.textTheme.bodySmall),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const Text(
+                    "This app is developed by A3 Group for the purpose of helping people to take care of their eyes."),
+                const SizedBox(height: 12),
+                RichText(
+                    text: TextSpan(children: [
+                      TextSpan(
+                          text: "You can read our ",
+                          style: themeData.textTheme.bodyMedium),
+                      TextSpan(
+                        text: "Terms and Condition",
+                        style: themeData.textTheme.bodyMedium!.copyWith(
+                          color: themeData.colorScheme.primary,
+                        ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.pop(context);
+                            _launchInBrowser(tosURL);
+                          },
+                      ),
+                      TextSpan(
+                          text: " and ", style: themeData.textTheme.bodyMedium),
+                      TextSpan(
+                        text: "Privacy Policy.",
+                        style: themeData.textTheme.bodyMedium!.copyWith(
+                          color: themeData.colorScheme.primary,
+                        ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.pop(context);
+                            _launchInBrowser(privacyPolicyURL);
+                          },
+                      ),
+                    ])),
+              ],
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: Text(themeData.useMaterial3
+                    ? localizations.closeButtonLabel
+                    : localizations.closeButtonLabel.toUpperCase()),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+            scrollable: true,
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -35,19 +134,7 @@ class _Home extends State<Home> {
           IconButton(
             icon: const Icon(Icons.info), color: Theme.of(context).colorScheme.primary,
             onPressed: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) => AlertDialog(
-                  title: const Text("About Root U Check"),
-                  content: const Text("Root U Check is an app that checks if your device is rooted or not. It is made by a A3 Group."),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(context, 'OK'),
-                      child: const Text('OK'),
-                    ),
-                  ],
-                ),
-              );
+              showCustomDialogBox();
             },
           ),
         ],
