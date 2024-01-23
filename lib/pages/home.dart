@@ -36,8 +36,8 @@ class _Home extends State<Home> {
     }
   }
 
-  final Uri tosURL = Uri.parse("Urls.TOS");
-  final Uri privacyPolicyURL = Uri.parse("Urls.PRIVACY_POLICY");
+  final Uri tosURL = Uri.parse("https://a3group.co.in/root-u-check/terms-and-service");
+  final Uri privacyPolicyURL = Uri.parse("https://a3group.co.in/root-u-check/privacy-policy");
 
   void showCustomDialogBox() async {
     final ThemeData themeData = Theme.of(context);
@@ -54,14 +54,14 @@ class _Home extends State<Home> {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Icon(Icons.visibility,
+                    Icon(Icons.tag,
                         size: 50, color: themeData.colorScheme.primary),
                     Expanded(
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 24.0),
                         child: ListBody(
                           children: <Widget>[
-                            Text("Eye Care",
+                            Text("Root U Check",
                                 style: themeData.textTheme.headlineSmall),
                             Text("1.0.0",
                                 style: themeData.textTheme.bodyMedium),
@@ -75,7 +75,7 @@ class _Home extends State<Home> {
                   ],
                 ),
                 const Text(
-                    "This app is developed by A3 Group for the purpose of helping people to take care of their eyes."),
+                    "This app is developed by A3 Group to check if your device is rooted."),
                 const SizedBox(height: 12),
                 RichText(
                     text: TextSpan(children: [
